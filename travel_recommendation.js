@@ -1,5 +1,7 @@
 url = 'travel_recommendation_api.json';
 
+let timezones = [];
+let timezones_name = [];
 let messages = [];
 let countries = [];
 let temples = [];
@@ -7,6 +9,15 @@ let beaches = [];
 let cities = [];
 let all = [];
 let flag = false;
+let cityTime;
+
+
+
+
+    
+  
+
+
 
 const members = [
     {
@@ -42,26 +53,93 @@ fetch(url)
         .then(response => response.json())
         .then(data => {     
             
+            data.countries.forEach(object =>{
+                countries.push(object)});
             
             data.countries.forEach(object => {              // divisao dos elementos JSON em arrays de objetos
-                countries.push(object.cities)});
+                cities.push(object.cities)});
             data.temples.forEach(object => {
                 temples.push(object);});
             data.beaches.forEach(object => {
                 beaches.push(object);});
-                cities = countries.flat();
+                cities = cities.flat();
             all = temples.concat(beaches).concat(cities);
             console.log("eu fui chamada");
+
+                cities.forEach(element=>{
+                if (element.name.includes("Brazil"))
+                    element["utf"]= "America/Sao_Paulo";
+                
+                else if(element.name.includes("Sydney"))
+                    element["utf"]= "Australia/Sydney";
+                else if(element.name.includes("Melbourne"))
+                    element["utf"]= "Australia/Melbourne";
+                else if(element.name.includes("Tokyo"))
+                    element["utf"]= "Asia/Tokyo";
+                })
+                console.log(cities);
             
             
     
     })
+
+/*    fetch('timezones.json')
+  .then(response => response.json())
+  .then(timezone => {
+    
+    timezone.forEach(object => {
+        timezones.push(object.utc);
+        timezones.forEach(element=>{
+            element.forEach(hora=>{
+                
+                //timezones_name.push(hora.replace("_"," "));
+                //console.log(timezones_name);
+                countries.forEach(country =>{
+                    //console.log(city.name)
+                    if(hora.includes(country.name))
+                        country["utf"] = hora;
+                    
+                        console.log(country);     
+                })
+                
+            })
+        })
+
+        
+        
+    })*/
+    
+    
+    const options = { timeZone: 'America/New_York', hour12: true, hour: 'numeric', minute: 'numeric', second: 'numeric' };
+    const newYorkTime = new Date().toLocaleTimeString('en-US', options);
+    console.log("Current time in New York:", newYorkTime);
+
+
+    function getTime(object){
+    const time = object;
+    const options = { timeZone: time, hour12: true, hour: 'numeric', minute: 'numeric', second: 'numeric' };
+     cityTime = new Date().toLocaleTimeString('en-US', options);
+    return cityTime; 
+              
+};
+
+
+
+
+
 
  document.getElementById('search-button').addEventListener('click',search );
  document.getElementById('clear-button').addEventListener('click',clear );
 
 function search(event) {
     event.preventDefault();
+
+    
+
+
+    
+
+
   
     clear();   //funcao async para limpar pesquisa caso usuario nao tenha pressionado botao clear
 
@@ -80,17 +158,29 @@ function search(event) {
     
     
         if (search.includes("countr")){   // retorna todos os dados
+             
+            
+            
+            
+            
+            
                 flag = true;
-                all.forEach(object => {
-                newDiv = document.createElement("div");
+                cities.forEach(object => {
+                
+                
+                const newDiv = document.createElement("div");
+                console.log(`Current time in ${object.name}`, cityTime);
                 newDiv.classList = "row";
                 newDiv.id = "results-item";
                 newDiv.innerHTML = `
-                <img src="${object.imageUrl}" alt="Image" id="image-result">    
-                <h2>${object.name}</h2>
+                <img src="${object.imageUrl}" alt="Image" id="image-result">   
+                <h2>${object.name} <p id=current-time>Current Time: ${getTime(object.utf)}</p></h2>
+               
                 <p>${object.description}</p> 
-                <button class="btn btn-outline-success" type="submit">Visit</button>
+                <button class="btn btn-outline-success" type="submit" onclick="message()">Visit</button>
+                
                 `;
+                
                 document.getElementById("specific-content").appendChild(newDiv);
             });
             
@@ -107,7 +197,8 @@ function search(event) {
                 <img src="${object.imageUrl}" alt="Image" id="image-result">    
                 <h2>${object.name}</h2>
                 <p>${object.description}</p> 
-                <button class="btn btn-outline-success" type="submit">Visit</button>
+                <button class="btn btn-outline-success" type="submit" onclick="message()">Visit</button>
+                
                 `;
                 document.getElementById("specific-content").appendChild(newDiv);
             });
@@ -123,14 +214,15 @@ function search(event) {
                 <img src="${object.imageUrl}" alt="Image" id="image-result">    
                 <h2>${object.name}</h2>
                 <p>${object.description}</p> 
-                <button class="btn btn-outline-success" type="submit">Visit</button>
+                <button class="btn btn-outline-success" type="submit" onclick="message()">Visit</button>
+                
                 `;
                 document.getElementById("specific-content").appendChild(newDiv);
             });
         }
         
         else all.forEach(object => {
-            console.log(object.name.toLowerCase().normalize("NFD")) // retorna elemento especifico pelo nome ou alerta no caso de nao encontrar elemento                                     
+             // retorna elemento especifico pelo nome ou alerta no caso de nao encontrar elemento                                     
             if (object.name.toLowerCase().includes(search)){
                 flag = true;
                 newDiv = document.createElement("div");
@@ -140,7 +232,8 @@ function search(event) {
                 <img src="${object.imageUrl}" alt="Image" id="image-result">    
                 <h2>${object.name}</h2>
                 <p>${object.description}</p> 
-                <button class="btn btn-outline-success" type="submit">Visit</button>
+                <button class="btn btn-outline-success" type="submit" onclick="message()">Visit</button>
+                
                 `;
                 document.getElementById("specific-content").appendChild(newDiv);}
                 
@@ -239,13 +332,13 @@ function contactUs() {
     <label for="textarea" class="form-label">Message</label>
     <textarea placeholder="Enter your message" class="form-control" id="message" rows="5" required></textarea>
     </div>
-    <button type="submit" class="btn btn-primary" id="form-button" onclick ="userMessage()">Submit</button>
+    <button type="submit" class="btn btn-primary" id="form-button" onclick ="userForm()">Submit</button>
     </form> 
     `;   
 }
 
 
- function userMessage(){
+ function userForm(){
     const name = document.getElementById("name");
     const email = document.getElementById("email");
     const message = document.getElementById("message")
@@ -259,8 +352,18 @@ function contactUs() {
         <h4 class="alert-heading">Thank you for getting in touch</h4>
         <p>Our team will contact you soon</p>
         <hr>`;
+    
+    
 
  }  
+
+ function message(){
+    document.getElementById("specific-content").innerHTML = `<div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Thank you for getting in touch</h4>
+        <p>Our team will contact you soon</p>
+        <hr>`;
+
+ }
       
     
            
