@@ -1,0 +1,234 @@
+body {
+    background-image: url(./images/background_image4.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    
+    
+     
+}
+
+#Our-Team-Members-Images {
+    background-image: url(./images/member.jpg);
+    width: 40px;
+    height: 40px;
+}   
+
+.navbar {
+    background-color: transparent;
+    border-bottom: 1px solid  rgb(255, 255, 255);
+    
+}
+
+
+.navbar-brand {
+    font-size: 30px;
+    font-weight: bold;
+    color:  rgb(255, 255, 255);
+    
+}
+#airplane-icon {
+    font-size: 50px;
+    margin-left: 10px;
+    color: rgb(255, 255, 255);
+    
+}
+
+
+
+.nav-link {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    margin-top: 10px;
+    
+
+}
+
+#search-form {
+    
+    background-color: transparent;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#search-input {
+    background-color: transparent;
+    border: none;
+    width: 250px;
+         
+    
+}
+
+
+
+#search-icon {
+    color:  rgb(255, 255, 255);
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+#social-media-icons {
+    font-size: 40px;
+    max-width: 100px;
+    margin-top: 400px;
+    display: block;  
+    color: rgb(255, 255, 255);
+}
+
+
+#image-result {
+    
+    image-rendering: auto;
+    margin-top: 10px;
+    max-width: 600px;
+    height: 300px;
+    border-radius: 5%;
+    margin-bottom: 10px;
+}
+
+
+#specific-content {
+    
+    margin-left: 100px;
+    margin-top: 100px;
+    max-width: 700px;
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    
+
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+    max-height: 800px;
+    scrollbar-color: transparent transparent;
+    
+    
+    border-radius: 5px;
+    padding: 50px;
+    
+
+    font-size: 20px;
+
+    input {
+        background-color: transparent;
+        
+       
+        border-radius: 5px;
+        padding: 5px;
+        color: rgb(255, 255, 255);
+        placeholder {
+            color: rgb(255, 255, 255);
+        }
+        
+    }
+    textarea {
+        background-color: transparent;
+        border: 1px solid rgb(255, 255, 255);
+        border-radius: 5px;
+        padding: 5px;
+        color: rgb(255, 255, 255);
+        placeholder {
+            color: rgb(255, 255, 255);
+        }
+    }
+    label {
+        color: rgb(255, 255, 255);
+        font-size: 20px;
+        text-align: left;
+    }
+
+    button{   
+    margin-left: 10px;
+    margin-bottom: 30px;
+    max-width: 100px;
+    color: rgb(255, 255, 255);
+    border: 2px solid rgb(255, 255, 255);     
+    
+}
+    
+
+    
+
+    
+        
+}
+
+
+#content {
+    margin-left: 100px;
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 100px;
+    max-width: 700px;
+    
+    ;
+    color: rgb(255, 255, 255);
+    
+    border-radius: 5px;
+    padding: 50px;
+    text-align: center;
+    
+    h1 {
+        font-size: 80px;
+        
+    }
+    p {
+        font-size: 30px;
+        
+        color: rgb(255, 255, 255);
+        margin-top: 20px;
+        font-style: italic;
+    }
+}
+
+
+
+#Team-Members {
+    
+    
+    margin-top: 10px;
+    max-width: 700px;
+    
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 8px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-right: 300px;
+
+    img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+}
+
+
+#btn {
+    margin-top: 20px;
+    margin-left: 10px;
+    color: rgb(255, 255, 255);
+    border: 2px solid rgb(255, 255, 255);  
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
