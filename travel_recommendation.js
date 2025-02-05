@@ -63,12 +63,12 @@ fetch(url)
 
             data.beaches.forEach(object => {
                 beaches.push(object);});
-                cities = cities.flat();
-
+          
+            cities = cities.flat();
             all = temples.concat(beaches).concat(cities);
             console.log("eu fui chamada");
 
-                all.forEach(element=>{                                                                      // Setando uma nova propriedade para os elementos do JSON nos array de objetos que contem todos os destinos
+            all.forEach(element=>{                                                                      // Setando uma nova propriedade para os elementos do JSON nos array de objetos que contem todos os destinos
 
                 if (element.name.includes("Brazil"))                                                        // Setting TimeZones for the JSON elements in the all array witch contains all destinations
                     element["utf"]= "America/Sao_Paulo";              
@@ -211,7 +211,7 @@ function search(event) {
     else if (input.includes("templ"))                                                                               //Data collected in the JSON file is placed in specific arrays and an additional one containing all the data                                                                                                                                                    
         keySearch(temples);                                                                                                                                                                                                   
     else if (input.includes("beach")||input.includes("prai"))
-        keySearch(temples);                                                                                                                                                                                                                    
+        keySearch(beaches);                                                                                                                                                                                                                    
     else if (input.includes("availa")||input.includes("dispon"))                                             
         keySearch(all);
     else {
