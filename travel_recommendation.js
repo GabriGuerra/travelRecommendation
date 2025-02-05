@@ -196,7 +196,9 @@ function search(event) {
     input = input.trim();
     
     if(input === ""){
-        alert("Please enter a destination or keyword");                                                             // Caso Input vazio. Alerta com orientacao de pesquisa e mostrado
+        alert(
+        "Enter destination or keyword.");
+        showKeywords();                                                             // Caso Input vazio. Alerta com orientacao de pesquisa e mostrado
         return;
     }                                                                                                               // Case Input empty. Alert with search guidance is shown                                           
                                                  
@@ -204,7 +206,7 @@ function search(event) {
     console.log(typeof(input));
     
 
-    if (input.includes("countr" || "país" || "pais"))                                                                         //Dados coletados no arquivo JSON sao colocados em arrays especificos e um adicional contendo todos os dados
+    if (input.includes("countr" || "país" || "pais"))                                                               //Dados coletados no arquivo JSON sao colocados em arrays especificos e um adicional contendo todos os dados
         keySearch(cities);
     else if (input.includes("templ"))                                                                               //Data collected in the JSON file is placed in specific arrays and an additional one containing all the data                                                                                                                                                    
         keySearch(temples);                                                                                                                                                                                                   
@@ -220,8 +222,10 @@ function search(event) {
         });
         if (specificArray.length > 0) 
             keySearch(specificArray);
-        else
-            alert("Destination not available at this moment, type \"available\" to display all");
+        else{
+            alert("Destination not available at this moment");
+            showKeywords();
+        }
     }                                                                                              
 }
 
@@ -356,7 +360,39 @@ function page(page){                                                            
      `;
     rightCol.appendChild(rightColItem);
     
- }                                                                                                                      
+ }
+ 
+ function showKeywords(){                                                                                                       //Funcao chamada para os casos de destino nao cadastrado ou campo de busca vazio
+    
+    clear();                                                                                                                    ////Function called in cases of unregistered destination or empty search field
+    const rightColItem = document.createElement("Div");                                                                         
+    const rightCol = document.getElementById('right-col');
+    rightColItem.id = "rightcol-item";
+    rightColItem.classList = "row";                                                                          
+    rightColItem.innerHTML = `                                                         
+    <h2><center>Keywords (palavras-chave)</center></h2>
+    <hr>
+    <ul>
+    <li>Location name.</li>
+    <li>"Available" to display all available destination currently available.</li>
+    <li>"Beach" to display all available beaches currently available.</li>
+    <li>"Temple" to display all available temples currently available.</li>
+    <li>"Country" to display all available countries and their cities currently available.</li> 
+    </ul>
+    <hr>
+    <ul>                                                   
+    <li> Nome do destino
+    <li>"Disponível" para mostrar todas os destinos disponiveis no momento.</li>
+    <li>"Praia" para mostrar todas as praias disponiveis no momento.</li>
+    <li>"Templo" para mostrar todos os templos disponiveis no momento.</li>
+    <li>"País"  para mostrar todos as paises disponiveis no momento.</li>
+    
+    </ul>
+    
+    `;
+    rightCol.appendChild(rightColItem);
+
+}
                                                                                                                         
       
     
