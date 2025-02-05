@@ -209,6 +209,7 @@ body {
 #rightcol-item-form {
     margin-bottom: 40px;
     border-color:antiquewhite;
+    font-style: normal;
        
     padding: 20px;
     border: 1px solid; 
@@ -222,9 +223,11 @@ body {
     border-color: 1px, aliceblue; 
     text-align: left;
     font-size: 20px;
+    
 
     p {
         font-size: 20px;
+        
 
     }
 
@@ -255,6 +258,7 @@ body {
 
     p {
         font-size: 20px;
+        
 
     }
     
@@ -262,6 +266,9 @@ body {
         padding: 10px;  
         width: 49%; 
         font-size: 20px;   
+    }
+    li {
+        font-style: normal;
     }
 
     
