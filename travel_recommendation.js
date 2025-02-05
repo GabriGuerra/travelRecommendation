@@ -1,59 +1,49 @@
-//const { createElement } = require("react");
+url = 'travel_recommendation_api.json';                                                                     // url para utilizacao da API FETCH
 
-url = 'travel_recommendation_api.json'; // url para utilizacao da API FETCH
-window.addEventListener('load', function() {
+                                                                                                            // url for fetch API
+                                                          
+window.addEventListener('load', function() {                
     page("home");
-});
-                                        // url for fetch API
-                     // variaveis globais utilizadas para tratamento de dados do arquivo JSON
-          
-let messages = [];                      // global variables for JSON files data
-let countries = [];
+});                                      
+                                                                                                            //variaveis globais utilizadas para tratamento de dados do arquivo JSON         
+let messages = [];                      
+let countries = [];                                                                                         //global variables for JSON files data
 let temples = [];
 let beaches = [];
 let cities = [];
 let all = [];
-let interval = [];
-let flag = false;
 var cityTime;
 var currentDiv;
 var buttonName;
 let options;
+const members = [                                                                                           //Array de objetos dos membros do time 
 
-
-
-
-
-
-
-    
-  
-
-
-const members = [                  //Array de objetos dos membros do time (todos sou eu mesmo neste projeto)
-
-                                   //Array of objects for team member (all myself in this case)
+                                                                                                            //Array of objects for team member 
     
     {
         name: 'Gabriel Guerra Samorano Pires',
         description: `Responsible for developing this page.
-        The purpose and logic of this project was to use only one page for "all pages" through manipulation of
-         DOMs dynamically via javascript, this page contains the skeleton of all project information. 
-         The function of showing the destination timezones in real time was also created dynamically, using asynchronous functions. 
-         JSON files were used for data collection and writing via the fetch API. Bootstrap and CSS were used for the page layout.`,
+        The purpose and logic of this project was to use only one 
+        page for "all pages" through manipulation of
+        DOMs dynamically via javascript, 
+        travel_recommendation_html is the only html file in this project. 
+        The function of showing the destination timezones in real 
+        time was also created dynamically, using asynchronous functions. 
+        JSON files were used for data collection and writing via the fetch API.
+        Bootstrap and CSS were used for the page layout.`,
         position: 'Team Lead',
         image: './images/Foto.png'
     },
    
 ];
-async function clear() {                                     // funcao assincrona para limpar pesquisa
+async function clear() {                                                                                    // funcao assincrona para limpar pesquisa
                                                              
-    const parent = document.getElementById("right-col");     //async function to clear search
+    const parent = document.getElementById("right-col");                                                    //async function to clear search
     while (document.getElementById("rightcol-item")){
     const child = document.getElementById("rightcol-item");
     parent.removeChild(child);
-    
     }
+ 
     
 }
 
@@ -65,9 +55,9 @@ fetch(url)
             data.countries.forEach(object =>{
                 countries.push(object)});
             
-            data.countries.forEach(object => {              // divisao dos elementos JSON em arrays de objetos para cada "tipo"  (paises, cidades, praias e templos)           
+            data.countries.forEach(object => {                                                              // divisao dos elementos JSON em arrays de objetos para cada "tipo"  (paises, cidades, praias e templos)           
                 cities.push(object.cities)}); 
-                                                            //JSON elements divided in arrays of objects for each "type" (countries, cities, beaches and temples
+                                                                                                            //JSON elements divided in arrays of objects for each "type" (countries, cities, beaches and temples
             data.temples.forEach(object => {
                 temples.push(object);});
 
@@ -78,9 +68,9 @@ fetch(url)
             all = temples.concat(beaches).concat(cities);
             console.log("eu fui chamada");
 
-                all.forEach(element=>{                  // Setando uma nova propriedade para os elementos do JSON nos array de objetos que contem todos os destinos
+                all.forEach(element=>{                                                                      // Setando uma nova propriedade para os elementos do JSON nos array de objetos que contem todos os destinos
 
-                if (element.name.includes("Brazil"))    // Setting TimeZones for the JSON elements in the all array witch contains all destinations
+                if (element.name.includes("Brazil"))                                                        // Setting TimeZones for the JSON elements in the all array witch contains all destinations
                     element["utf"]= "America/Sao_Paulo";              
                 else if(element.name.includes("Sydney"))
                     element["utf"]= "Australia/Sydney";
@@ -102,11 +92,11 @@ fetch(url)
     
         })
 
-/*fetch('timezones.json')                           //Este codigo usa a API fetch para o arquivo JSON que contem todas as timezones, converte o formato no array de destinos e encontra seu correspondente horario local. Desabilitado para este projeto.
-
-    .then(response => response.json())              //This code uses the fetch API for the JSON file that contains all the timezones, converts the format into the destination array and finds their corresponding local time. Disabled for this project.
-    .then(timezone => {
-    
+/*fetch('timezones.json')                                                                                   //Este codigo usa a API fetch para o arquivo JSON que contem todas as timezones, 
+                                                                                                            //converte o formato no array de destinos e encontra seu correspondente horario local. Desabilitado para este projeto.
+    .then(response => response.json())              
+    .then(timezone => {                                                                                     //This code uses the fetch API for the JSON file that contains all the timezones, 
+                                                                                                            //converts the format into the destination array and finds their corresponding local time. Disabled for this project.
     timezone.forEach(object => {
         timezones.push(object.utc);
         timezones.forEach(element=>{
@@ -132,19 +122,15 @@ fetch(url)
     
 function getTime(object){ 
     let button = object.name.concat("-button");    
-    document.getElementById(button).classList = 'hidden';                                                                                                         //Essa funcao assincrona e chamada atraves de um eventListener contido na funcao search
-                                                                                                                     //encontra o horario local do destino, cria uma nova data e dinamicamente cria um elemento no HTML                                                                                                                  
-    setInterval(() => { 
-                                                                                                //Conta tambem com o uso do metodos setInterval para atualizar esse horario a cada segundo, pode ser usada para diversos destinos ao mesmo tempo
-        let currentTime = object.name.concat("-p");                                                                                                                                                                       //This asynchronous function is called through an eventListener contained in the search function
-        options = { timeZone: object.utf, hour12: true, hour: 'numeric', minute: 'numeric', second: 'numeric' };    //finds the local time of the destination, creates a new date and dynamically creates an element in the HTML
-        cityTime = new Date().toLocaleTimeString('en-US', options);                                                 //It also includes the use of setInterval method to update this time every second, it can be used for several destinations at the same time 
-        document.getElementById(currentTime).innerHTML=cityTime;
-        console.log("ainda estou ativa");
-        
-        
-                                                                          
-    }, 1000);
+    document.getElementById(button).classList = 'hidden'; 
+                                                                                                                 //Essa funcao assincrona e chamada atraves de um eventListener contido na funcao search  
+    setInterval(function() {                                                                                     //encontra o horario local do destino, cria uma nova data e dinamicamente cria um elemento no HTML                                                
+    currentTime = object.name.concat("-p");                                                                      //Conta tambem com o uso do metodos setInterval para atualizar esse horario a cada segundo, pode ser usada para diversos destinos ao mesmo tempo                                                                                                                                                                                                                                                                                                                                          
+    options = { timeZone: object.utf, hour12: true, hour: 'numeric', minute: 'numeric', second: 'numeric' };     
+    cityTime = new Date().toLocaleTimeString('en-US', options);                                                  //This asynchronous function is called through an eventListener contained in the search function
+    document.getElementById(currentTime).innerHTML=cityTime;                                                     //finds the local time of the destination, creates a new date and dynamically creates an element in the HTML
+    console.log("ainda estou ativa");}                                                                           //It also includes the use of setInterval method to update this time every second, it can be used for several destinations at the same time 
+    , 1000);                                                                                                
     
                                                                                                   
 };
@@ -167,9 +153,10 @@ function keySearch(search) {
     
     search.forEach(object => {
 
-        const buttonId = object.name.concat("-button");
+        const buttonId = object.name.concat("-button");                                                          //Funcao especifica chamada pela funcao "search" retorna elementos especificos beaseados no input do usuario. Mostra os resultados em formato html
         const currentTime = object.name.concat("-p");
-        newDiv = document.createElement("div");
+        newDiv = document.createElement("div");                                                                  //Specific function called by the "search" function returns specific elements based on user input, Displays results in html format 
+                                                                                
         newDiv.classList = "row";
         newDiv.id = "rightcol-item";
         newDiv.innerHTML = ` 
@@ -197,47 +184,34 @@ function keySearch(search) {
 
 
 function search(event) {  
-                                                                           //funcao que retorna o destino correspondente na pesquisa
+                                                                          
     event.preventDefault();
-    clearInterval();
+    clear();
     
-    let input = document.getElementById("search-input").value;
-    if(input)
+    let input = document.getElementById("search-input").value;                                                      //manipulação de string para garantir precisão no resultado, flag de variável usada nos casos em que o destino não está cadastrado
+    if(input)                                                                                                       //Além desta manipulação, são utilizadas pesquisas, nesta função, métodos para tratar palavras-chave incompletas, singular ou plural, maiúsculas ou minúsculas
     input = input.toString();
-    input = input.toLowerCase();                                      //string manipulation to ensure accuracy in the result, variable flag used in cases that destination is not registered
-    input = input.replace(/^\s+|\s+$/gm,'');                           //In addition to this manipulation, searches, in this function, use methods to treat incomplete keywords, singular or plural, upper or lower case.
+    input = input.toLowerCase();                                                                                    //string manipulation to ensure accuracy in the result, variable flag used in cases that destination is not registered
+    input = input.replace(/^\s+|\s+$/gm,'');                                                                        //In addition to this manipulation, searches, in this function, methods to treat incomplete keywords, singular or plural, upper or lower case are used
     input = input.trim();
+    
     if(input === ""){
-        alert("Please enter a destination or keyword");
+        alert("Please enter a destination or keyword");                                                             // Caso Input vazio. Alerta com orientacao de pesquisa e mostrado
         return;
-    }                                                                                                            //funtion that returns the corresponding destination in user search
-                                                    //funcao async para limpar pesquisa, chamada aqui caso usuario nao tenha pressionado botao clear
+    }                                                                                                               // Case Input empty. Alert with search guidance is shown                                           
+                                                 
     console.log("valor de input dentro da function search",input);
     console.log(typeof(input));
-    clear();
-                                                     //async function to clear results, called here in case user has not pressed clear button
-
-
-
-
-                                                                                                         // Caso Input vazio. Alerta com orientacao de pesquisa e mostrado
-
     
-                                                         //tratamento do valor inserido pelo usuario na pesquisa para precisao nas comparacoes, variavel flag para casos em que o destino nao esta registrado
-                                                                        // alem deste tratamento as pesquisas nessa funcao usam metodos para  tratar palavras-chave incompletas, no singular ou no plural, letra maiucula ou minuscula
-                                                                        
-    
-    
-    
-    if (input.includes("countr"))                                 //Retorna todas as paises disponiveis, juntamente com a informacao de suas cidades e o seu horario local, cria uma div dinamicamente insere os dados e os disponibiliza na tela
-        keySearch(cities);                                                                       //Returns all available countries with their cities info and current time, creates a div dynamically inserts the data and makes it available on the screen.
-    else if (input.includes("templ"))                              //Retorna todas as templos disponiveis, com suas informacoes e horario local, cria divs dinamicamente insere os dados e os disponibiliza na tela
-        keySearch(temples);                                                                      //Returns all available temples, with their information and local time, creates divs dynamically inserts the data and makes it available on the screen                                                           
-    else if (input.includes("beach"))                          //Retorna todas as praias disponiveis, com suas informacoes e horario local, cria  divs dinamicamente insere os dados e os disponibiliza na tela
-        keySearch(beaches);                                                                 //Returns all available beaches, with their information and local time, creates divs dynamically inserts the data and makes it available on the screen                                  
-    else if (input.includes("availa")) {
+
+    if (input.includes("countr"))                                                                                   //Dados coletados no arquivo JSON sao colocados em arrays especificos e um adicional contendo todos os dados
+        keySearch(cities);
+    else if (input.includes("templ"))                                                                               //Data collected in the JSON file is placed in specific arrays and an additional one containing all the data                                                                                                                                                    
+        keySearch(temples);                                                                                                                                                                                                   
+    else if (input.includes("beach"))                                                           
+        keySearch(beaches);                                                                                                   
+    else if (input.includes("availa"))                                                        
         keySearch(all);
-    }
     else {
         let specificArray = [];
         all.forEach(object => {
@@ -248,26 +222,18 @@ function search(event) {
             keySearch(specificArray);
         else
             alert("Destination not available at this moment, type \"available\" to display all");
-    }                                                                                              //Este e o caso de o usuario digitar um destino especifico, sem o uso de palavras-chave, o resultado e mostrado pelo mesmo processo utilizado nas pesquisas anteriores
+    }                                                                                              
 }
 
 
              
-function page(page){
-    
+function page(page){                                                                                                //funcao que cria e insere dinamicamente os dados dos links no arquivo travel-recommendation.html, dispensando o uso do atributo 'href'
 
-
-    
-    
-
-    const home = document.getElementById("home");
+    const home = document.getElementById("home");                                                                   //function that dynamically creates and inserts link data into the travel-recommendation.html file, with no use of'href' attribute
     const aboutUs = document.getElementById("about-us");
     const contactUs = document.getElementById("contact-us");
     const rightCol = document.getElementById("right-col");
     const leftCol = document.getElementById("left-col");
-
-    
-    
 
     if(page=="home"){
         
@@ -283,9 +249,7 @@ function page(page){
         <h3>Discover the world's most breathtaking destinations with our expert travel
         recommendations. Whether you're a nature lover, a culture enthusiast, or a foodie, 
         we've got you covered. Start planning your next adventure today!</h3>
-        <button type="submit" class="btn btn-outline-success" id="book-now" onclick ="userMessage()">BOOK NOW</button>`;
-        
-
+        <button type="submit" class="btn btn-outline-success" id="book-now" onclick ="userMessage()">BOOK NOW</button>`;      
     }
 
     else if(page=="about-us"){
@@ -363,11 +327,11 @@ function page(page){
     }
     
 }           
- function userMessage(){                                                                                   //Aqui sao colocados os dados do usuario e sua mensagem num array de objetos, e exibe uma mensagem agradecendo o contato, //
-    //                                                                                                     //ha tambem uma funcao que usa a API fetch para armazenar estes dados num arquivo JSON utilizando apenas javascript, tambem desabilitada para o
+ function userMessage(){                                                                                                //Aqui sao colocados os dados do usuario e sua mensagem num array de objetos, e exibe uma mensagem agradecendo o contato, //
+    //                                                                                                                  //ha tambem uma funcao que usa a API fetch para armazenar estes dados num arquivo JSON utilizando apenas javascript, tambem desabilitada para o
     const name = document.getElementById("name");                   
-    const email = document.getElementById("email");                                                        //Here the user's data and their message are placed in an array of objects, and displays a message thanking the contact
-                                                                                                           //Function also used the fetch api to write data to a json file, also disabled in this project
+    const email = document.getElementById("email");                                                                     //Here the user's data and their message are placed in an array of objects, and displays a message thanking the contact
+                                                                                                                        //Function also used the fetch api to write data to a json file, also disabled in this project
     const message = document.getElementById("message")
     const userInfo = {};
     userInfo.name = name;
@@ -377,14 +341,14 @@ function page(page){
     console.log(messages);
     showMessage();
  }  
-                                                                                                          //Funcao que retorna uma mensagem de sucesso, chamada por diversos botoes
+                                                                                                                        //Funcao que retorna uma mensagem de sucesso, chamada por diversos botoes
  function showMessage(){
-
+                                                                                                                        //Function that returns a success message, called by several buttons
     clear();
     const rightColItem = document.createElement("Div");
     const rightCol = document.getElementById('right-col');
     rightColItem.id = "rightcol-item";
-    rightColItem.classList = "row";                                                                                  //Function that returns a success message, called by several buttons
+    rightColItem.classList = "row";                                                                          
     rightColItem.innerHTML =    `                                                         
      <h2><center>Thank you for getting in touch</center></h2>
      <hr>                                                   
@@ -397,9 +361,3 @@ function page(page){
       
     
            
-
-
-
-
-
-

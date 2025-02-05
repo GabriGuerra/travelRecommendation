@@ -1,4 +1,4 @@
-/*Navbar____________________________________________________________________________________________________________________________________________________*/
+/*Navbar___________________________________________________________________________________________________________________________________________________________________________________________________________*/
 
 
 
@@ -68,7 +68,6 @@ body {
              
 }
 
-
 #search-icon {
     font-size: 20px;
     color: rgb(255, 255, 255);
@@ -107,9 +106,7 @@ body {
     scroll-behavior: smooth; 
     scrollbar-color: transparent transparent;
     
-     
-    
-    
+      
     input {
         background-color: transparent;  
         border-radius: 5px;
@@ -132,19 +129,14 @@ body {
     ::placeholder {
         color: white;
         opacity: .6;
-    }
-    
-    
+    }   
 }
+
 #emailHelp {
     color: white;
     opacity: .4;
     
 }
-
-
-
-
 
 #social-media-icons {
     position: fixed;
@@ -160,18 +152,8 @@ body {
     overflow-y: scroll;
     scroll-behavior: smooth; 
     scrollbar-color: transparent transparent;
- 
 
 }
-#member-image {
-    padding: 100px;
-    position: center;
-    image-rendering: auto;    
-    border-radius: 50%;
-    height: auto;
-    width: auto;
-}
-
 
 
 #left-col{
@@ -188,12 +170,69 @@ body {
         margin-top: 20px;
         font-size: 20px;
     }
-    
- 
-    
+      
 }
 
+#rightcol-item-member {
+    margin-bottom: 40px;
+    border-color:antiquewhite;
+       
+    padding: 20px;
+    border: 1px solid; 
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 3%;
+    height: 700px;
+    width: 700px;
+    
+    
+    
+    border-color: 1px, aliceblue; 
+    text-align: left;
+    font-size: 20px;
 
+    p {
+        font-size: 20px;
+
+    }
+
+}
+
+#member-image {
+    
+    position: center;
+    image-rendering: auto;    
+    border-radius: 50%;
+    height: 200px;
+    width: 220px;
+}
+
+#rightcol-item-form {
+    margin-bottom: 40px;
+    border-color:antiquewhite;
+       
+    padding: 20px;
+    border: 1px solid; 
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 3%;
+    height: auto;
+    width: 600px;
+    
+    
+    
+    border-color: 1px, aliceblue; 
+    text-align: left;
+    font-size: 20px;
+
+    p {
+        font-size: 20px;
+
+    }
+
+    button {
+        font-size: 20px;
+    }
+
+}
 
 #rightcol-item {
 
@@ -205,6 +244,9 @@ body {
     border: 1px solid; 
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 3%;
+    height: auto;
+    width: auto;
+    
     
     
     border-color: 1px, aliceblue; 
@@ -219,17 +261,11 @@ body {
     button {
         padding: 10px;  
         width: 49%; 
-        font-size: 17px;   
+        font-size: 20px;   
     }
-    
 
-    
-
-    
     
 }
-
-
 
 #image-result{
     position: relative;
@@ -239,10 +275,6 @@ body {
     width: auto;
     
 }
-
-
-
-
 
 .btn {   
     
@@ -259,61 +291,11 @@ body {
     
  }
 
-
-
-
-  
         
 .hidden {
     display: none;
 }
    
-
-
- /*.content{
-
-    
-    
-    
-    height: auto;
-    text-align: center;
-    color: rgb(255, 255, 255);  
-    border-color: 1px, aliceblue;
-    overflow-y: scroll;
-    scrollbar-gutter: stable;
-    
-    scrollbar-color: transparent transparent;
-
-    
-    
-    h1 {
-        
-        font-size: 80px;      
-        
-    }
-    p {
-        
-        font-size: 30px;       
-        color: rgb(255, 255, 255);
-        margin-top: 20px;
-        
-    }
-   
-}
-
-#Team-Members {
-
-    img {
-        image-rendering: auto;
-        border-radius: 50%;
-    }
-
-}
-
-*/
-
-
-
 
 
 
