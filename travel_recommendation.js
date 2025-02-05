@@ -364,7 +364,7 @@ function page(page){                                                            
  
  function showKeywords(){                                                                                                       //Funcao chamada para os casos de destino nao cadastrado ou campo de busca vazio
     
-    clear();                                                                                                                    ////Function called in cases of unregistered destination or empty search field
+    clear();                                                                                                                    //Function called in cases of unregistered destination or empty search field
     const rightColItem = document.createElement("Div");                                                                         
     const rightCol = document.getElementById('right-col');
     rightColItem.id = "rightcol-item";
