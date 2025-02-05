@@ -21,8 +21,8 @@ const members = [                                                               
                                                                                                             //Array of objects for team member 
     
     {
-        name: 'Gabriel Guerra Samorano Pires',
-        description: `Responsible for developing this page.
+        name:'<br>Gabriel Guerra Samorano Pires',
+        description:`Responsible for developing this page.
         The purpose and logic of this project was to use only one 
         page for "all pages" through manipulation of
         DOMs dynamically via javascript, 
@@ -30,8 +30,8 @@ const members = [                                                               
         The function of showing the destination timezones in real 
         time was also created dynamically, using asynchronous functions. 
         JSON files were used for data collection and writing via the fetch API.
-        Bootstrap and CSS were used for the page layout.`,
-        position: 'Team Lead',
+        Bootstrap and CSS were used for the page layout.<hr>`,
+        position:'Team Lead',
         image: './images/Foto.png'
     },
    
