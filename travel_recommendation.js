@@ -204,13 +204,13 @@ function search(event) {
     console.log(typeof(input));
     
 
-    if (input.includes("countr"))                                                                                   //Dados coletados no arquivo JSON sao colocados em arrays especificos e um adicional contendo todos os dados
+    if (input.includes("countr" || "país" || "pais"))                                                                         //Dados coletados no arquivo JSON sao colocados em arrays especificos e um adicional contendo todos os dados
         keySearch(cities);
     else if (input.includes("templ"))                                                                               //Data collected in the JSON file is placed in specific arrays and an additional one containing all the data                                                                                                                                                    
         keySearch(temples);                                                                                                                                                                                                   
-    else if (input.includes("beach"))                                                           
+    else if (input.includes("beach"|| "prai"))                                                           
         keySearch(beaches);                                                                                                   
-    else if (input.includes("availa"))                                                        
+    else if (input.includes("availa" || "dispo"))                                                        
         keySearch(all);
     else {
         let specificArray = [];
