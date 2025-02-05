@@ -198,7 +198,7 @@ function search(event) {
     if(input === ""){
         alert(
         "Enter destination or keyword.");
-        showKeywords();                                                             // Caso Input vazio. Alerta com orientacao de pesquisa e mostrado
+        showKeywords();                                                                                             // Caso Input vazio. Alerta com orientacao de pesquisa e mostrado
         return;
     }                                                                                                               // Case Input empty. Alert with search guidance is shown                                           
                                                  
